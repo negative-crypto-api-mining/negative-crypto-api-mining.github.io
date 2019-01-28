@@ -4,17 +4,7 @@ This is the page to share the artifacts related to the paper "Negative Results o
 
 ### Abstract of the Paper
 
-Android app developers recurrently use crypto-APIs to provide data security to app users.
-Unfortunately, misuse of APIs only creates an illusion of security and even exposes apps to systematic attacks.
-It is thus necessary to provide developers with a statically-enforceable list of specifications of crypto-API usage rules.
-On the one hand, such rules cannot be manually written as the process does not scale to all available APIs.
-On the other hand, a classical mining approach based on common usage patterns is not relevant in Android,
-given that a large share of usages include mistakes.
-In this work, building on the assumption that “developers update API usage instances to fix misuses”,
-we propose to mine a large dataset of updates within about 40 000 real-world app lineages to infer API usage rules.
-Eventually, our investigations yield negative results on our assumption that API usage updates tend to correct misuses.
-Actually, it appears that updates that fix misuses may be unintentional:
-the same misuses patterns are quickly re-introduced by subsequent updates.
+Android app developers recurrently use crypto-APIs to provide data security to app users. Unfortunately, misuse of APIs only creates an illusion of security and even exposes apps to systematic attacks. It is thus necessary to provide developers with a statically-enforceable list of specifications of crypto-API usage rules. On the one hand, such rules cannot be manually written as the process does not scale to all available APIs. On the other hand, a classical mining approach based on common usage patterns is not relevant in Android, given that a large share of usages include mistakes. In this work, building on the assumption that “developers update API usage instances to fix misuses”, we propose to mine a large dataset of updates within about 40 000 real-world app lineages to infer API usage rules. Eventually, our investigations yield negative results on our assumption that API usage updates tend to correct misuses. Actually, it appears that updates that fix misuses may be unintentional: the same misuses patterns are quickly re-introduced by subsequent updates.
 
 ```markdown
 Syntax highlighted code block
