@@ -1,0 +1,68 @@
+Ruleset: 
+	KeyGenerator
+	DSAParameterSpec
+	IvParameterSpec
+	KeyPairGenerator
+	HMACParameterSpec
+	SecretKey
+	DHGenParameterSpec
+	GCMParameterSpec
+	SecretKeySpec
+	RSAKeyGenParameterSpec
+	Mac
+	Signature
+	KeyStore
+	KeyPair
+	PBEParameterSpec
+	Cipher
+	AlgorithmParameters
+	DHParameterSpec
+	MessageDigest
+	DSAGenParameterSpec
+	SecureRandom
+	SecretKeyFactory
+	PBEKeySpec
+
+Findings in Java Class: com.cloudant.sync.datastore.encryption.EncryptedAttachmentOutputStream
+
+	 in Method: void <init>(java.io.OutputStream,byte[],byte[])
+		IncompleteOperationError violating CrySL rule for Cipher
+			Operation on object of type javax.crypto.Cipher object not completed. Expected call to update, doFinal
+			at statement: specialinvoke $r7.<javax.crypto.CipherOutputStream: void <init>(java.io.OutputStream,javax.crypto.Cipher)>($r1, $r4)
+
+		RequiredPredicateError violating CrySL rule for SecretKeySpec
+			First parameter was not properly randomized
+			at statement: specialinvoke $r5.<javax.crypto.spec.SecretKeySpec: void <init>(byte[],java.lang.String)>($r2, "AES")
+
+		RequiredPredicateError violating CrySL rule for IvParameterSpec
+			First parameter was not properly randomized
+			at statement: specialinvoke $r6.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>($r3)
+
+
+Findings in Java Class: com.cloudant.sync.datastore.PreparedAttachment
+
+	 in Method: void <init>(com.cloudant.sync.datastore.Attachment,java.lang.String,long,com.cloudant.sync.datastore.AttachmentStreamFactory)
+		ConstraintError violating CrySL rule for MessageDigest
+			First parameter (with value "SHA-1") should be any of {SHA-256, SHA-384, SHA-512}
+			at statement: $r16 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>("SHA-1")
+
+		ImpreciseValueExtractionError violating CrySL rule for MessageDigest
+			Constraint int pre_len p int 0 could not be evaluted due to insufficient information.
+			at statement: virtualinvoke $r16.<java.security.MessageDigest: void update(byte[],int,int)>($r4, 0, $i2)
+
+		TypestateError violating CrySL rule for MessageDigest
+			Unexpected call to method digest on object of type java.security.MessageDigest. Expect a call to one of the following methods digest,update
+			at statement: $r4 = virtualinvoke $r16.<java.security.MessageDigest: byte[] digest()>()
+
+
+======================= CogniCrypt Summary ==========================
+	Number of CrySL rules: 23
+	Number of Objects Analyzed: 7
+
+	CogniCrypt found the following violations. For details see description above.
+	ConstraintError: 1
+	IncompleteOperationError: 1
+	RequiredPredicateError: 2
+	ImpreciseValueExtractionError: 1
+	TypestateError: 1
+=====================================================================
