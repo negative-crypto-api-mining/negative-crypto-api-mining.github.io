@@ -42,7 +42,7 @@ _CogniCrypt_ is a static analyzer framework for detecting JCA API misuses
 in Java programs and it provided an Android app specified analyzer which
 is used in this study.
 It can be accessed from their [github site](https://github.com/CROSSINGTUD/CryptoAnalysis-Android).
-Meanwhile, the reports generated in this study is available [here](data/sample).
+Meanwhile, the reports generated in this study is available [here](resources/sample).
 (Note: because of the large size of these reports, it will be share with a link
 to our own server. Therefore, during double blind review period, the link will not
 be revealed and only one sample report is provided.)
